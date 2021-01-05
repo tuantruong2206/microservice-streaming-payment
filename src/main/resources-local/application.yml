@@ -22,7 +22,7 @@ spring:
         streams:
           binder:
             configuration:
-              application.server: localhost:8090
+              application.server: localhost:8070
             functions:
               #            #APPLICATION ID if we have more than one stream app within same springboot
               orderPaymentProcess:
