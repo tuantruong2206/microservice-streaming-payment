@@ -29,7 +29,7 @@ public class OrderPaymentProcessorTopology {
     private final static String ORDER_PAYMENT_SERVICE = "Order Payment Service";
 
     @Bean
-    public Function<KStream<Byte, OrderStreamDTO>, KStream<?, VerifiedOrderStreamDTO>> orderPaymentProcess() {
+    public Function<KStream<Byte, OrderStreamDTO>, KStream<Long, VerifiedOrderStreamDTO>> orderPaymentProcess() {
         return input -> input.peek((k, v) -> log.info("receive order to process payment {}", v))
                .map((k, v) -> new KeyValue<>(v.getOrderId(), new VerifiedOrderStreamDTO(v.getUserid(), v.getProdId(), v.getOrderId(), Status.VERIFIED, ORDER_PAYMENT_SERVICE, Instant.now(), Instant.now())));
     }

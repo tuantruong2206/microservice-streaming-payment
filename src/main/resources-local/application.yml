@@ -15,7 +15,7 @@ spring:
             default:
               key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
               value.serde: org.apache.kafka.common.serialization.Serdes$JsonSerde
-          brokers: 192.168.100.14:9092
+          brokers: 10.218.188.198:9092
           autoAddPartitions: true
           minPartitionCount: 4
           replicationFactor: 1
@@ -36,7 +36,15 @@ spring:
         orderPaymentProcess-in-0:
           destination: microservice-orders
           contentType: application/json
+          nativeDecoding: false
+          useNativeDecoding: false
+          consumer:
+            keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+            valueSerde: org.apache.kafka.common.serialization.Serdes$JsonSerde
         orderPaymentProcess-out-0:
+          producer:
+            keySerde: org.apache.kafka.common.serialization.Serdes$LongSerde
+            valueSerde: org.apache.kafka.common.serialization.Serdes$JsonSerde
           destination: microservice-verified-orders
           contentType: application/json
 
