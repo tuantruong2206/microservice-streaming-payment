@@ -25,10 +25,8 @@ spring:
               application.server: localhost:8090
             functions:
               #            #APPLICATION ID if we have more than one stream app within same springboot
-              orderCountByUserId:
-                applicationId: order-count-by-user-id-instance
-              orderVerifiedConsumer:
-                applicationId: order-verified-consumed-instance
+              orderPaymentProcess:
+                applicationId: order-payment-process-id-instance
             state-store-retry:
               max-attempts: 3
               backoff-period: 2000
@@ -36,7 +34,7 @@ spring:
         orderPaymentProcess-in-0:
           destination: microservice-orders
           contentType: application/json
-          nativeDecoding: false
+#          nativeDecoding: false
           useNativeDecoding: false
           consumer:
             keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
